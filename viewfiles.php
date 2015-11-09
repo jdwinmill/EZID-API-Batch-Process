@@ -1,12 +1,8 @@
 <?php
-error_reporting(E_ALL);
-error_log($_SERVER['REMOTE_ADDR']);
-include('locate.php');
-
 $selectOption = '';
 
 echo "<form method='post'> <select name='file'>\n";
-foreach (new DirectoryIterator('eziddownload/') as $file) {
+foreach (new DirectoryIterator('path_to_downloads/') as $file) {
    // if the file is not this file, and does not start with a '.' or '..',
    // then store it for later display
    if ( (!$file->isDot()) && ($file->getFilename() != basename($_SERVER['PHP_SELF'])) ) {
@@ -23,5 +19,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 echo '<a href="download.php?download_file='.$selectOption.'">Download file</a><br>';
-echo '<a href="./index.php">Upload CSV</a>';
+echo '<a href="/index.php">Upload CSV</a>';
 ?>
